@@ -30,3 +30,21 @@
 *.exe
 *.out
 *.app
+
+cheatsheet.cpp
+build/
+.vscode/
+
+# Ignore CMake files
+CMakeFiles/
+CMakeCache.txt
+*.cmake
+
+# Ignore object files
+*.o
+*.so
+*.a
+
+# Ignore executables
+*.exe
+inventory-management
