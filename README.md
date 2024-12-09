@@ -6,7 +6,7 @@ This project is a simple inventory management system built in C++.
 
 - Manage a list of products (add, update, delete)
 - Notify suppliers when stock is low
-- Support for multiple supplier types (retail, wholesale)
+- Support for multiple supplier types (local, global)
 
 ## Build Instructions
 
@@ -23,7 +23,7 @@ cd build
 cmake ..
 ```
 
-2. Build project:
+3. Build project:
 
 ```bash
 make
@@ -33,4 +33,10 @@ make
 
 ```bash
 ./inventory-management
+```
+
+Note: Step 2, 3 and 4 has been simplied in makefile so we can skip them and simply run
+
+```bash
+make run
 ```

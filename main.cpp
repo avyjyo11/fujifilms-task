@@ -3,37 +3,49 @@
 #include <stdio.h>
 #include <string>
 
+#include "src/product.cpp"
+#include "src/supplier.cpp"
+#include "src/organization.cpp"
+#include "src/local_supplier.cpp"
+#include "src/global_supplier.cpp"
+
 int main(int argc, char *argv[]) {
 
-  printf("Hello world!");
+  std::string product1 = "Television";
+  std::string product2 = "Jeans";
+  std::string product3 = "Cooking Pan";
 
-  // std::string foo = "I am foo";
-  // std::string bar = "I am bar";
+  Product p1(product1, Category::Electronics, 999.99, 10, 2);
+  Product p2(product2, Category::Clothing, 19.99, 30, 8);
+  Product p3(product3, Category::HomeAppliances, 40.50, 20, 10);
 
+  Organization org("DarazShop");
+  org.addProduct(p1);
+  org.addProduct(p2);
+  org.addProduct(p3);
 
-  // std::string fooRef = foo; // This creates a reference to foo.
-  // fooRef += ". Hi!"; // Modifies foo through the reference
-  // std::cout << fooRef << '\n'; // Prints "I am foo. Hi!"
+  LocalSupplier local_supplier("local_supplier");
+  GlobalSupplier global_supplier("global_supplier");
 
-  // std::cout << &fooRef << '\n'; // Prints the address of foo
-  // // Doesn't reassign "fooRef". This is the same as "foo = bar", and
-  // //   foo == "I am bar"
-  // // after this line.
-  // fooRef = bar;
-  // std::cout << &fooRef << '\n'; // Still prints the address of foo
-  // std::cout << fooRef << '\n';  // Prints "I am bar"
-  // std::cout << foo << '\n';
-  // printf("Helloo wrold~");
+  local_supplier.subscribeToOrganization(org);
+  global_supplier.subscribeToOrganization(org);
 
-  // try {
-  //     // Do not allocate exceptions on the heap using _new_.
-  //     throw std::runtime_error("A problem occurred");
-  // }
+  // Simulate a sale and update stock level
+  Product* p;
+  p = org.searchProductByName(product1);
+  p->soldStock(9);
+  p->displayProductDetails();
 
-  // // Catch exceptions by const reference if they are objects
-  // catch (const std::exception& ex)
-  // {
-  //     std::cout << ex.what();
-  // }
+  p = org.searchProductByName(product2);
+  p->soldStock(20);
+  p->displayProductDetails();
+
+  p = org.searchProductByName(product3);
+  p->soldStock(12);
+  p->displayProductDetails();
+
+  org.generateInventoryReport();
+  org.checkForRestock();
+  
   return 0;
 }

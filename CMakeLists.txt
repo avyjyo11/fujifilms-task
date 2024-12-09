@@ -15,4 +15,4 @@ set(SOURCES
 )
 
 # Add executable target
-add_executable(inventory-management main.cpp ${SOURCES})
+add_executable(inventory-management main.cpp)
